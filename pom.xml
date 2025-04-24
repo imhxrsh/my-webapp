@@ -8,10 +8,10 @@
   <dependencies>
     <!-- Use Jakarta Servlet API (required for Tomcat 10+) -->
     <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <version>6.0.0</version> <!-- Tomcat 11 supports Servlet 6.0 -->
-      <scope>provided</scope>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>6.1.0</version>
+        <scope>provided</scope>
     </dependency>
   </dependencies>
   
@@ -22,14 +22,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.3.2</version>
+        <version>3.4.0</version>
       </plugin>
       
       <!-- Cargo Maven Plugin (For Tomcat 11 Deployment) -->
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven2-plugin</artifactId>
-        <version>1.10.0</version>
+        <artifactId>cargo-maven3-plugin</artifactId>
+        <version>1.10.19</version>
         <configuration>
           <container>
             <containerId>tomcat11x</containerId>
