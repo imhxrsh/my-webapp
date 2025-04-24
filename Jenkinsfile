@@ -27,10 +27,14 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'tomcat-creds', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
-                    bat """
-                        \"${MVN_HOME}\\bin\\mvn\" cargo:deploy -Dcargo.tomcat.manager.url=${TOMCAT_URL} -Dcargo.remote.username=%TOMCAT_USER% -Dcargo.remote.password=%TOMCAT_PASS%
-                    """
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'tomcat-creds',
+                        usernameVariable: 'TOMCAT_USER',
+                        passwordVariable: 'TOMCAT_PASS'
+                    )
+                ]) {
+                    bat "\"${MVN_HOME}\\bin\\mvn\" org.codehaus.cargo:cargo-maven2-plugin:1.10.0:deploy"
                 }
             }
         }
