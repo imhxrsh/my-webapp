@@ -26,35 +26,36 @@
       </plugin>
       
       <!-- Cargo Maven Plugin (For Tomcat 11 Deployment) -->
-      <plugin>
-        <groupId>org.codehaus.cargo</groupId>
-        <artifactId>cargo-maven3-plugin</artifactId>
-        <version>1.10.19</version>
-        <configuration>
-          <container>
-            <containerId>tomcat11x</containerId>
-            <type>remote</type>
-          </container>
-          <configuration>
-            <type>runtime</type>
-            <properties>
-              <cargo.tomcat.manager.url>${env.TOMCAT_URL}</cargo.tomcat.manager.url>
-              <cargo.remote.username>${env.TOMCAT_USER}</cargo.remote.username>
-              <cargo.remote.password>${env.TOMCAT_PASS}</cargo.remote.password>
-            </properties>
-          </configuration>
-          <deployables>
-            <deployable>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>${project.artifactId}</artifactId>
-              <type>war</type>
-              <properties>
-                <context>/sample</context> <!-- Deploys to http://localhost:8080/sample -->
-              </properties>
-            </deployable>
-          </deployables>
-        </configuration>
-      </plugin>
+        <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven3-plugin</artifactId>
+            <version>1.10.19</version>
+            <configuration>
+                <container>
+                <containerId>tomcat11x</containerId>
+                <type>remote</type>
+                </container>
+                <configuration>
+                <type>runtime</type>
+                <properties>
+                    <cargo.remote.username>admin</cargo.remote.username>
+                    <cargo.remote.password>admin123</cargo.remote.password>
+                    <cargo.remote.uri>http://localhost:8090/manager/text</cargo.remote.uri>
+                </properties>
+                </configuration>
+                <deployables>
+                <deployable>
+                    <groupId>com.example</groupId>
+                    <artifactId>my-webapp</artifactId>
+                    <type>war</type>
+                    <properties>
+                    <context>sample</context>
+                    </properties>
+                </deployable>
+                </deployables>
+            </configuration>
+            </plugin>
+
     </plugins>
   </build>
 </project>
