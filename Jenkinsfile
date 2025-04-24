@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         MVN_HOME = tool 'Maven'
-        TOMCAT_URL = 'http://localhost:8090/manager/text'
+        TOMCAT_URL = 'http://localhost:8090/manager/text' // Tomcat manager URL
     }
     
     stages {
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'tomcat-creds', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
                     bat """
-                        \"${MVN_HOME}\\bin\\mvn\" tomcat7:deploy -Dmaven.tomcat.url=${TOMCAT_URL} -Dmaven.tomcat.username=%TOMCAT_USER% -Dmaven.tomcat.password=%TOMCAT_PASS%
+                        \"${MVN_HOME}\\bin\\mvn\" cargo:deploy -Dcargo.tomcat.manager.url=${TOMCAT_URL} -Dcargo.remote.username=%TOMCAT_USER% -Dcargo.remote.password=%TOMCAT_PASS%
                     """
                 }
             }
