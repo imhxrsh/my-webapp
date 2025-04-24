@@ -34,7 +34,7 @@ pipeline {
                         passwordVariable: 'TOMCAT_PASS'
                     )
                 ]) {
-                    bat "\"${MVN_HOME}\\bin\\mvn\" org.codehaus.cargo:cargo-maven2-plugin:1.10.0:deploy"
+                    bat "\"${MVN_HOME}\\bin\\mvn\" org.codehaus.cargo:cargo-maven3-plugin:1.10.19:deploy"
                 }
             }
         }
